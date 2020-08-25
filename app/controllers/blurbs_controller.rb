@@ -1,0 +1,2 @@
+class BlurbsController < ApplicationController
+end
