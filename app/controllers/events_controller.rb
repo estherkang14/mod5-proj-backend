@@ -8,5 +8,13 @@ class EventsController < ApplicationController
             :except => [:created_at, :updated_at]
         )
     end 
+
+    def show 
+        event = Event.find(params[:id])
+
+        render json: event.to_json(
+            :except => [:created_at, :update_at]
+        )
+    end 
     
 end

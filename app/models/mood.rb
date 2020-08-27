@@ -1,3 +1,3 @@
 class Mood < ApplicationRecord
-    belongs_to :daily_post 
+    has_many :daily_posts
 end

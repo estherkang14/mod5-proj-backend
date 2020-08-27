@@ -1,3 +1,3 @@
 class Blurb < ApplicationRecord
-    belongs_to :daily_post 
+    has_one :daily_post 
 end

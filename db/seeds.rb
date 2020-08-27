@@ -5,3 +5,69 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+User.destroy_all
+Event.destroy_all 
+Mood.destroy_all
+Blurb.destroy_all
+DailyPost.destroy_all 
+
+
+esther = User.create(name: "Esther", username: "ekang", password: "password", location: "Columbia, MD")
+pepper = User.create(name: "Pepper", username: "pepperthecat", password: "password", location: "Columbia, MD")
+luna = User.create(name: "Luna", username: "lunathecat", password: "password", location: "Seattle, WA")
+
+def get_national_holidays
+    info_string = RestClient.get('https://calendarific.com/api/v2/holidays?api_key=46249050e48d8ac4bcaf6995811d9ba26a2115cc&country=US&year=2020&type=national')
+    info_hash = JSON.parse(info_string)
+    all_holiday_info = info_hash["response"]["holidays"]
+end 
+
+#event: title, type, start_date, end_date, notes, completed?
+
+get_national_holidays.each do |holiday| 
+    Event.create(title: holiday["name"], event_type: "National Holiday", start_date: holiday["date"]["iso"], end_date: holiday["date"]["iso"], completed: false, notes: "")
+end
+
+User.all.each do |user|
+    Event.all.each do |event|
+        UserEvent.create(user_id: user.id, event_id: event.id)
+    end 
+end 
+
+# mood: title, color, hexcode
+red = Mood.create(title: "very stressed, angry, frustrated", color: "Muted Red", hexcode: "#d66857")
+orange = Mood.create(title: "alert, cautious, slightly stressed", color: "Pale Orange", hexcode: "#6d977d")
+green = Mood.create(title: "neutral, calm", color: "Pale Green", hexcode: "#7d977d")
+blue = Mood.create(title: "tired, down, drained, sad", color: "Dusty Blue", hexcode: "#b5bcc1")
+purple = Mood.create(title: "happy, lively, hopeful", color: "Dusty Lavender", hexcode: "#cdc3c9")
+pink = Mood.create(title: "great, best day eva, good mood", color: "Pastel Pink", hexcode: "#e3b7bd")
+
+# blurb: thankful, struggle, day_summary
+
+blurb1 = Blurb.create(thankful: "Friends who check up on me", struggle: "Working on this project", day_summary: "Started the morning a little slow, but getting back into working on my project")
+blurb2 = Blurb.create(thankful: "Food on the table", struggle: "Finding a job", day_summary: "Job search is tough but I ate well today!")
+
+# dailypost: date, day, userid, moodid, blurbid
+DailyPost.create(user_id: esther.id, mood_id: green.id, blurb_id: blurb1.id, date: "2020-08-26", day: "Wednesday")
+
+# def get_local_holidays 
+#     info_string = RestClient.get('https://calendarific.com/api/v2/holidays?api_key=46249050e48d8ac4bcaf6995811d9ba26a2115cc&country=US&year=2020&type=local')
+#     info_hash = JSON.parse(info_string)
+#     local_holiday_info = info_hash["response"]["holidays"]
+# end 
+
+# md_holidays = get_local_holidays.each do |holiday|
+#     if holiday["locations"].include?("MD")
+#         Event.create(title: holiday["name"], event_type: "Local Holiday", start_date: holiday["date"]["iso"], end_date: holiday["date"]["iso"], completed: false, notes: "Maryland Holiday")
+#     end 
+# end 
+
+# wa_holidays = get_local_holidays.each do |holiday|
+#     if holiday["locations]"].include?("WA")
+#         Event.create(title: holiday["name"], event_type: "Local Holiday", start_date: holiday["date"]["iso"], end_date: holiday["date"]["iso"], completed: false, notes: "Washington Holiday")
+#     end 
+# end 
+
+
+

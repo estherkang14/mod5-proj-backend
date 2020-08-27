@@ -22,4 +22,8 @@ class DailyPostsController < ApplicationController
                     }
                 }
             )
+        else
+            render json: {error: "ERROR WITH DAILY POST"}
+        end  
+    end 
 end

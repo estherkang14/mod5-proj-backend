@@ -14,7 +14,7 @@ class UsersController < ApplicationController
                 :user_events => {
                     :include => [:event]
                 },
-                daily_posts => {
+                :daily_posts => {
                     :include => [:mood, :blurb]
                 }
             }
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:name, :username:, :password, :location)
+        params.require(:user).permit(:name, :username, :password, :location)
     end 
 
     
