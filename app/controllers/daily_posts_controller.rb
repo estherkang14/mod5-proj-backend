@@ -3,6 +3,8 @@ class DailyPostsController < ApplicationController
 
     def create
         daily_post = DailyPost.new(daily_post_params)
+
+        byebug
         
         if daily_post.valid?
             daily_post.save
@@ -42,6 +44,6 @@ class DailyPostsController < ApplicationController
     private
 
     def daily_post_params
-        params.require(:daily_post).permit(:date, :mood_id, :user_id, :struggle, :thankful, :summary)
+        params.permit(:date, :mood_id, :user_id, :struggle, :thankful, :summary)
     end 
 end

@@ -1,5 +1,26 @@
 class EventsController < ApplicationController
-    skip_before_action :logged_in?, only: [:index, :show]
+    skip_before_action :logged_in?
+
+    def create
+        event = Event.new(event_params)
+
+        # byebug 
+
+        if event.valid?
+            event.save
+            
+            render json: event.to_json(
+                :except => [:created_at, :updated_at],
+                :include => {
+                    :user => {
+                        :only => [:username, :id]
+                    }
+                }
+            )
+        else
+            render json: {error: "ERROR WITH EVENT POST"}
+        end  
+    end 
 
     def index
         events = Event.all 
@@ -15,6 +36,12 @@ class EventsController < ApplicationController
         render json: event.to_json(
             :except => [:created_at, :update_at]
         )
+    end 
+
+    private 
+
+    def event_params
+        params.permit(:user_id, :title, :event_type, :start_date, :end_date, :notes)
     end 
     
 end

@@ -1,6 +1,5 @@
 class Event < ApplicationRecord
-    has_many :user_events
-    has_many :users, through: :user_events 
+    belongs_to :user
     
     def get_national_holidays
         national_holidays = Event.all.select { |event| event.event_type == "National Holiday"}

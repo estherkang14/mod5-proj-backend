@@ -11,31 +11,40 @@ Event.destroy_all
 Mood.destroy_all
 Blurb.destroy_all
 DailyPost.destroy_all 
+Holiday.destroy_all
 
 
 esther = User.create(name: "Esther", username: "ekang", password: "password", location: "Columbia, MD")
 pepper = User.create(name: "Pepper", username: "pepperthecat", password: "password", location: "Columbia, MD")
 luna = User.create(name: "Luna", username: "lunathecat", password: "password", location: "Seattle, WA")
 
-def get_national_holidays
+def get_national_holidays_2020
     info_string = RestClient.get('https://calendarific.com/api/v2/holidays?api_key=46249050e48d8ac4bcaf6995811d9ba26a2115cc&country=US&year=2020&type=national')
     info_hash = JSON.parse(info_string)
     all_holiday_info = info_hash["response"]["holidays"]
 end 
 
+def get_national_holidays_2021
+    info_string_2021 = RestClient.get('https://calendarific.com/api/v2/holidays?api_key=46249050e48d8ac4bcaf6995811d9ba26a2115cc&country=US&year=2021&type=national')
+    info_hash_2021 = JSON.parse(info_string_2021)
+    all_holiday_info_2021 = info_hash_2021["response"]["holidays"]
+end 
+
 #event: title, type, start_date, end_date, notes, completed?
 
-get_national_holidays.each do |holiday| 
-    Event.create(title: holiday["name"], event_type: "National Holiday", start_date: holiday["date"]["iso"], end_date: holiday["date"]["iso"], completed: false, notes: "")
-end
+# get_national_holidays.each do |holiday| 
+#     Event.create(title: holiday["name"], event_type: "National Holiday", start_date: holiday["date"]["iso"], end_date: holiday["date"]["iso"], completed: false, notes: "")
+# end
 
-get_national_holidays.each do |holiday|
+get_national_holidays_2020.each do |holiday|
     Holiday.create(title: holiday["name"], start_date: holiday["date"]["iso"], notes: "")
 end 
 
-    Event.all.each do |event|
-        UserEvent.create(user_id: User.first.id, event_id: event.id)
-    end 
+get_national_holidays_2021.each do |holiday|
+    Holiday.create(title: holiday["name"], start_date: holiday["date"]["iso"], notes: "")
+end 
+
+estherbday = Event.create(title: "My Birthday", event_type: "Birthday", user_id: esther.id, start_date: "2020-09-14", end_date: "2020-09-14", notes: "", completed: false)
 
 
 # mood: title, color, hexcode
