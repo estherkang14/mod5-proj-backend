@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :holidays
   resources :blurbs
   resources :moods
   resources :daily_posts

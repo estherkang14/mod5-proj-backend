@@ -15,9 +15,10 @@ class UsersController < ApplicationController
                     :include => [:event]
                 },
                 :daily_posts => {
-                    :include => [:mood, :blurb]
+                    :include => [:mood]
                 }
-            }
+            },
+            :except => [:created_at, :updated_at]
         )
     end
     
