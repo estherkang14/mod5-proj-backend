@@ -4,7 +4,7 @@ class DailyPostsController < ApplicationController
     def create
         daily_post = DailyPost.new(daily_post_params)
 
-        byebug
+        # byebug
         
         if daily_post.valid?
             daily_post.save

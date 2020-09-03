@@ -29,7 +29,7 @@ class UsersController < ApplicationController
             user.save
             render json: {user: user, token: encode_token({user_id: user.id})}
         else 
-            render json: {error: "Failer to create the user"}
+            render json: {error: "Failure to create the user"}
         end 
     end 
 
