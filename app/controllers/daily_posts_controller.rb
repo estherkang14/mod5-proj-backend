@@ -22,7 +22,7 @@ class DailyPostsController < ApplicationController
                 }
             )
         else
-            render json: {error: "ERROR WITH DAILY POST"}
+            render json: {errors: daily_post.errors.full_messages}
         end  
     end 
 
@@ -40,6 +40,27 @@ class DailyPostsController < ApplicationController
             :except => [:created_at, :updated_at, :blurb_id]
         )
     end
+
+    def update 
+        daily_post = DailyPost.find(params[:id])
+
+        if daily_post.update(daily_post_params)
+            render json: daily_post.to_json(
+                :except => [:created_at, :updated_at],
+                :include => {
+                    :user => {
+                        :only => [:name, :username, :location],
+                        :except => [:created_at, :updated_at]
+                    },
+                    :mood => {
+                        :except => [:created_at, :updated_at]
+                    }
+                }
+            )
+        else
+            render json: {errors: daily_post.errors.full_messages}
+        end  
+    end 
 
     private
 

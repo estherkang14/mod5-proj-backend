@@ -18,7 +18,7 @@ class EventsController < ApplicationController
                 }
             )
         else
-            render json: {error: "ERROR WITH EVENT POST"}
+            render json: {errors: event.errors.full_messages}
         end  
     end 
 
@@ -37,6 +37,24 @@ class EventsController < ApplicationController
             :except => [:created_at, :update_at]
         )
     end 
+
+    def update
+        event = Event.find(params[:id])
+
+        if event.update(event_params)
+            render json: event.to_json(
+                :except => [:created_at, :updated_at],
+                :include => {
+                    :user => {
+                        :only => [:username, :id]
+                    }
+                }
+            )
+        else
+            render json: {errors: event.errors.full_messages}
+        end  
+    end  
+
 
     def destroy
         event = Event.find(params[:id])
