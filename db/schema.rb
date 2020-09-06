@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_31_175105) do
+ActiveRecord::Schema.define(version: 2020_09_06_212159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 2020_08_31_175105) do
 
   create_table "events", force: :cascade do |t|
     t.string "title"
-    t.date "start_date"
-    t.date "end_date"
+    t.string "start_date"
+    t.string "end_date"
     t.text "notes"
     t.boolean "completed"
     t.datetime "created_at", precision: 6, null: false
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2020_08_31_175105) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "zipcode"
   end
 
 end
