@@ -65,6 +65,6 @@ class DailyPostsController < ApplicationController
     private
 
     def daily_post_params
-        params.permit(:date, :mood_id, :user_id, :struggle, :thankful, :summary)
+        params.permit(:date, :mood_id, :user_id, :struggle, :thankful, :summary, :water)
     end 
 end

@@ -7,5 +7,6 @@ class DailyPost < ApplicationRecord
     validates :thankful, presence: true 
     validates :struggle, presence: true 
     validates :summary, presence: true, length: { maximum: 120 }
-    
+    validates :water, length: { minimum: 0 }
+
 end
