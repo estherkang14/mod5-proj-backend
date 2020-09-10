@@ -71,7 +71,11 @@ DailyPost.create(user_id: esther.id, mood_id: green.id, thankful: "test", strugg
 DailyPost.create(user_id: esther.id, mood_id: blue.id, thankful: "test", struggle: "test", summary: "test", date: "2020-09-03", water: 4)
 DailyPost.create(user_id: esther.id, mood_id: blue.id, thankful: "test", struggle: "test", summary: "test", date: "2020-09-04", water: 8)
 DailyPost.create(user_id: esther.id, mood_id: purple.id, thankful: "test", struggle: "test", summary: "test", date: "2020-09-05", water: 9 )
-DailyPost.create(user_id: esther.id, mood_id: blue.id, thankful: "test", struggle: "test", summary: "test", date: "2020-09-06", water: 7)
+DailyPost.create(user_id: esther.id, mood_id: red.id, thankful: "test", struggle: "test", summary: "test", date: "2020-09-06", water: 7)
+DailyPost.create(user_id: esther.id, mood_id: red.id, thankful: "test", struggle: "test", summary: "test", date: "2020-09-07", water: 7)
+DailyPost.create(user_id: esther.id, mood_id: purple.id, thankful: "test", struggle: "test", summary: "test", date: "2020-09-08", water: 7)
+# DailyPost.create(user_id: esther.id, mood_id: blue.id, thankful: "test", struggle: "test", summary: "test", date: "2020-09-09", water: 7)
+
 
 DailyPost.create(user_id: luna.id, mood_id: blue.id, thankful: "test", struggle: "test", summary: "test", date: "2020-08-30")
 DailyPost.create(user_id: luna.id, mood_id: green.id, thankful: "test", struggle: "test", summary: "test", date: "2020-08-31")
