@@ -33,6 +33,14 @@ class UsersController < ApplicationController
         end 
     end 
 
+    # create destroy method to delete account 
+    # def destroy
+    #     user = User.find(params[:id])
+    #     user.destroy 
+
+    #     render json: user
+    # end 
+
     private
 
     def user_params
