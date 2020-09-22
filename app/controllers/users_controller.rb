@@ -41,6 +41,13 @@ class UsersController < ApplicationController
     #     render json: user
     # end 
 
+    # create update method to update account
+    # def update
+    #     user = User.find(params[:id])
+        
+        #   render json: user
+    # end 
+
     private
 
     def user_params
