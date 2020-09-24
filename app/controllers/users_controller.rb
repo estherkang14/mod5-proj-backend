@@ -33,13 +33,12 @@ class UsersController < ApplicationController
         end 
     end 
 
-    # create destroy method to delete account 
-    # def destroy
-    #     user = User.find(params[:id])
-    #     user.destroy 
+    def destroy
+        user = User.find(params[:id])
+        user.destroy 
 
-    #     render json: user
-    # end 
+        render json: user
+    end 
 
     # create update method to update account
     # def update
