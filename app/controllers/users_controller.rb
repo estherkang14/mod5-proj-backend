@@ -41,11 +41,18 @@ class UsersController < ApplicationController
     end 
 
     # create update method to update account
-    # def update
-    #     user = User.find(params[:id])
-        
-        #   render json: user
-    # end 
+    def update
+        user = User.find(params[:id])
+
+        if user.update(user_params)
+            render json: user.to_json(
+                {user: user, token: encode_token({user_id: user.id})}
+            )
+        else 
+            render json: {errors: user.errors.full_messages}
+        end 
+
+    end 
 
     private
 

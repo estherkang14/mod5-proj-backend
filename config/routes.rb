@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :daily_posts
   resources :user_events
   resources :events
-  resources :users, only: [:create, :index, :show]
+  resources :users
 
   post '/login', to: 'auth#create'
   
